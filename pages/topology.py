@@ -104,16 +104,30 @@ def render():
             line=dict(color=lcol, width=3), name=llabel,
         ))
 
-    fig.update_layout(
-        **base_layout("", h=420),
-        xaxis=dict(visible=False, range=[0, 1]),
-        yaxis=dict(visible=False, range=[0.05, 1.0]),
-        margin=dict(l=10, r=10, t=10, b=10),
-        legend=dict(x=0.01, y=0.01, font=dict(size=10),
-                    bgcolor="rgba(22,27,34,0.85)", bordercolor=GRID_CLR),
-    )
-    st.plotly_chart(fig, use_container_width=True)
-
+# Replace this:
+  fig.update_layout(
+      **base_layout("", h=420),
+      xaxis=dict(visible=False, range=[0, 1]),
+      yaxis=dict(visible=False, range=[0.05, 1.0]),
+      margin=dict(l=10, r=10, t=10, b=10),
+      legend=dict(x=0.01, y=0.01, font=dict(size=10),
+                  bgcolor="rgba(22,27,34,0.85)", bordercolor=GRID_CLR),
+  )
+  
+  # With this:
+  _layout = base_layout("", h=420)
+  _layout["xaxis"].update(dict(visible=False, range=[0, 1]))
+  _layout["yaxis"].update(dict(visible=False, range=[0.05, 1.0]))
+  _layout.update(
+      margin=dict(l=10, r=10, t=10, b=10),
+      legend=dict(x=0.01, y=0.01, font=dict(size=10),
+                  bgcolor="rgba(22,27,34,0.85)", bordercolor=GRID_CLR),
+  )
+  fig.update_layout(**_layout)
+      st.plotly_chart(fig, use_container_width=True)
+##
+  
+##
     # ── Bus data table + Branch data table ──────────────────────────────────
     c1, c2 = st.columns(2)
 
