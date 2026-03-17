@@ -104,16 +104,6 @@ def render():
             line=dict(color=lcol, width=3), name=llabel,
         ))
 
-# Replace this:
-  fig.update_layout(
-      **base_layout("", h=420),
-      xaxis=dict(visible=False, range=[0, 1]),
-      yaxis=dict(visible=False, range=[0.05, 1.0]),
-      margin=dict(l=10, r=10, t=10, b=10),
-      legend=dict(x=0.01, y=0.01, font=dict(size=10),
-                  bgcolor="rgba(22,27,34,0.85)", bordercolor=GRID_CLR),
-  )
-  
   # With this:
   _layout = base_layout("", h=420)
   _layout["xaxis"].update(dict(visible=False, range=[0, 1]))
